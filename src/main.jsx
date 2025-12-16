@@ -3,13 +3,11 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
-import { MemoDemo } from './Learning/usecall & useMemo/MemoDemo';
-
-
+import { Callback } from './Learning/usecall & useMemo/CallbackDemo';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <MemoDemo/>
+    <Callback/>
   </StrictMode>
 )
