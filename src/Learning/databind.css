@@ -1,0 +1,10 @@
+*{
+    background-color: rgb(230, 181, 116);
+}
+
+header{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border: 2px solid rgb(230, 3, 3);
+}

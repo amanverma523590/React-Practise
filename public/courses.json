@@ -1,0 +1,34 @@
+
+[
+    {
+        "title": "Salesforce CRM",
+        "duration": "60days",
+        "faculty": "Mr. Adhan",
+        "image": "./tools/australia.jpg"
+    },
+    {
+        "title": "Playwright Automation",
+        "duration": "2 Months",
+        "faculty": "Real Time Expert",
+        "image": "./tools/india.jpg"
+    },
+    {
+        "title": ".NET",
+        "duration": "4 Months",
+        "faculty": "Mr. Bagnar Raju",
+        "image": "./tools/nepal.jpg"
+    },
+    {
+        "title": "Java",
+        "duration": "4 Months",
+        "faculty": "Mr. Kishan",
+        "image": "./tools/iphone.png"
+    }
+]
+
+
+db.products.updateMany(){
+    $and:{
+        
+    }
+}

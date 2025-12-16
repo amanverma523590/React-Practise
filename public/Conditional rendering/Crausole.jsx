@@ -1,0 +1,93 @@
+
+import axios from "axios";
+import { useEffect, useState,useRef } from "react"
+
+export default function Cra(){
+
+  const[product,setProduct] = useState({id: 0, title : ' ', price : 0, category: ' ', image : null, description: ' ', rating : {rate:0,count:0} })
+  const[status,setStatus] = useState('Slide-Show-Manual');
+
+  let productId = useRef(1);
+  let thread = useRef(null);
+
+  function LoadProduct(id){
+    axios.get(`https://fakestoreapi.com/products/${id}`)
+    .then(response => {
+      setProduct(response.data)
+    })
+  }
+  function LoadProductAuto(){
+    console.log(productId.current);
+    productId.current = productId.current + 1;
+    axios.get(`https://fakestoreapi.com/products/${productId.current}`)
+    .then(response =>{
+      setProduct(response.data)
+    } )
+  }
+
+  useEffect(()=>{
+    LoadProduct(1);
+  },[])
+
+  function handleNextClick(){
+    productId.current = productId.current + 1;
+    LoadProduct(productId.current)
+    setStatus('Slide-Show-Manual')
+  }
+  function handlePreviousClick(){
+    productId.current = productId.current - 1;
+    LoadProduct(productId.current)
+    setStatus('Slide-Show-Manual')
+  }
+  function handleSliderChange(e){
+    productId.current = parseInt(e.target.value)
+    LoadProduct(productId.current)
+    setStatus('Slide Show Manual');
+    console.log(e.target.value)
+    console.log(productId.current)
+  }
+  function handlePlayClick(){
+    thread.current = setInterval(LoadProductAuto, 5000)
+    setStatus('Slide Show Running')
+    console.log(productId.current)
+  }
+  function handlePauseClick(){
+    clearInterval(thread.current)
+    productId.current = productId.current;
+    setStatus("Slide Show Paused");
+  }
+
+  return(
+    <div className="container-fluid d-flex justify-conntent-center" >
+      <div className="card mt-4 w-50">
+        <div className="card-header text-center" style={{height:'80px'}}>
+          <div>{product.title}</div>
+          <div className="fw-bold mt-2">({status})</div>
+        </div>
+        <div className="card-body">
+          <div className="row">
+            <div className="col-1 d-flex flex-column justify-content-center align-items-center">
+              <button onClick={handlePreviousClick} className="bi bi-chevron-left btn btn-dark"></button>
+            </div>
+            <div className="col-10 position-relative">
+              <div className="badge fs-5 bg-danger text-white rounded rounded-circle position-absolute top-0 end-0 ">
+                {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+              </div>
+                <img src={product.image} width="100%" height="300" alt="no img" />
+                <div className="mt-3">
+                  <input type="range" onChange={handleSliderChange} value={productId.current} className="form-range" min="1" max='20' />
+                </div>
+            </div>
+            <div className="col-1 d-flex flex-column justify-content-center align-items-center">
+              <button onClick={handleNextClick} className="bi bi-chevron-right btn btn-dark"></button>
+            </div>
+          </div>
+        </div>
+        <div className="card-footer text-center">
+          <button onClick={handlePlayClick} className="btn btn-success  mx-2 bi bi-play"></button>
+          <button onClick={handlePauseClick} className="btn btn-danger bi bi-pause"></button>
+        </div>
+      </div>
+    </div>
+  )
+}
