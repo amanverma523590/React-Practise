@@ -3,13 +3,13 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
-import { WeatherAPI } from './Learning/Weather';
+import { MemoDemo } from './Learning/usecall & useMemo/MemoDemo';
 
 
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WeatherAPI/>
+    <MemoDemo/>
   </StrictMode>
 )
