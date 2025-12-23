@@ -5,6 +5,7 @@ export function Login(){
             <input type="text" /> <br />
             Age: 
             <input type="number" />
+            <button>Submit</button>
         </div>
     )
 }
