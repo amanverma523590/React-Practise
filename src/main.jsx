@@ -3,12 +3,11 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
-import { Routering } from './Router/Router';
-
+import { Twoway } from './Twoway';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Routering/>
+    <Twoway/>
   </StrictMode>
 )
